@@ -21,10 +21,10 @@ class Crud:
         Este método tem como finalidade, adicionar na lista contida dentro do Objeto Pessoa nomes e idades.
         '''
         if not nome and not idade:
-            return print(f'Você deve informar o nome e a idade da pessoa para adicionar na lista.')
+            return f'Você deve informar o nome e a idade da pessoa para adicionar na lista.'
 
         self.p.add_pessoa_list(nome, idade)
-        return print(f'Pessoa adicionada!\nNome: {self.p.nome}\t\tIdade: {self.p.idade}.\n')
+        return f'Pessoa adicionada!\nNome: {self.p.nome}\t\tIdade: {self.p.idade}.\n'
 
     def get_by_name(self, nome):
         '''
@@ -33,24 +33,24 @@ class Crud:
         '''
         print(f'Procurando em memória o registro pelo \'Nome\' [{nome}]...\n')
         if not nome:
-            return print('Você deve informar um nome.')
+            return 'Você deve informar um nome.'
 
         for pessoa in self.p.list_pessoas:
             if pessoa['nome'] == nome:
-                return print(f'Registro encontrado!\nNome: {pessoa["nome"]}\t\tIdade: {pessoa["idade"]}.\n')
-
-        if not pessoa:
-            return print('O nome informado não consta no registro.')
-        else:
-            return print(pessoa)
+                return f'Registro encontrado!\nNome: {pessoa["nome"]}\t\tIdade: {pessoa["idade"]}.'
+            else:
+                return 'O nome informado não consta no registro.'
 
     def get_all(self):
         '''
         Este método tem como finalidade listar todos os registros salvos dentro da lista contida no Objeto Pessoa.
         '''
         print(f'Pessoas registradas em memória:\n')
+        content = ''
         for pessoa in self.p.list_pessoas:
-            print(f'\t\tNome: {pessoa["nome"]}\t\tIdade: {pessoa["idade"]}\n')
+            content += f'\t\tNome: {pessoa["nome"]}\t\tIdade: {pessoa["idade"]}\n'
+
+        return content
 
     def delete(self, nome):
         '''
@@ -58,7 +58,7 @@ class Crud:
         Utiliza como chave de busca para remoção o Nome.
         '''
         if not nome:
-            return print(f'Você deve informar um nome para remover da lista de pessoas.')
+            return f'Você deve informar um nome para remover da lista de pessoas.'
 
         for pessoa in self.p.list_pessoas:
 
@@ -67,9 +67,9 @@ class Crud:
                 self.p.list_pessoas.remove(pessoa)
 
                 if len(self.p.list_pessoas) < list_size_before:
-                    return print(f'Removido o \'Nome\' [{nome}] da lista de pessoas com sucesso.')
+                    return f'Removido o \'Nome\' [{nome}] da lista de pessoas com sucesso.'
                 else:
-                    return print(f'Não foi possível remover o \'Nome\' [{nome}] da lista de pessoas.')
+                    return f'Não foi possível remover o \'Nome\' [{nome}] da lista de pessoas.'
 
     def put(self, nome, novo_nome, nova_idade):
         '''
@@ -79,15 +79,15 @@ class Crud:
         buscado e um valor nova_idade para alterar a idade da pessoa buscada.
         '''
         if not nome:
-            return print(f'Você deve informar o \'Nome\' para que seja efetuado a alteração da Pessoa.')
+            return f'Você deve informar o \'Nome\' para que seja efetuado a alteração da Pessoa.'
         if not novo_nome:
-            return print(f'Você deve informar um \'Novo Nome\' para que o nome seja modificado.')
+            return f'Você deve informar um \'Novo Nome\' para que o nome seja modificado.'
         if not nova_idade:
-            return print(f'Você deve informar uma \'Nova Idade\' para que a idade seja modificada.')
+            return f'Você deve informar uma \'Nova Idade\' para que a idade seja modificada.'
 
         for pessoa in self.p.list_pessoas:
             if pessoa['nome'] == nome:
                 print(f'Registro encontrado...\n\t\tNome: {pessoa["nome"]}\t\tIdade: {pessoa["idade"]}')
                 pessoa['nome'] = novo_nome
                 pessoa['idade'] = nova_idade
-                return print(f'\nRegistro alterado com sucesso!\n\t\tNome: {pessoa["nome"]}\t\tIdade: {pessoa["idade"]}')
+                return f'\nRegistro alterado com sucesso!\n\t\tNome: {pessoa["nome"]}\t\tIdade: {pessoa["idade"]}'
