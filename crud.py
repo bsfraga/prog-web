@@ -1,6 +1,5 @@
 from pessoa import Pessoa
 
-
 class Crud:
     '''
     Classe que gerencia os dados da aplicação.

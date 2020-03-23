@@ -22,6 +22,16 @@ class Pessoa:
         self.idade = ''
         self.list_pessoas = []
 
+    def get_pessoa(self):
+        '''
+        Retorna o conteúdo de Pessoa em um Dicionário
+        :return: dict com o conteudo de Pessoa
+        '''
+        return dict(
+            nome=self.nome,
+            idade=self.idade
+        )
+
     def add_pessoa_list(self, nome, idade):
         '''
         Para usar apenas uma instância do objeto este método tem como função

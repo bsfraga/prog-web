@@ -1,7 +1,7 @@
 from crud import Crud
 
 
-class TestCrud():
+class TestCrud:
 
     def test_insert(self):
         '''
