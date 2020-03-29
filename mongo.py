@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from properties import Properties
+from utils.properties import Properties
 import platform
 
 
