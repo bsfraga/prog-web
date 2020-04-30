@@ -5,7 +5,9 @@ from flask_jwt_extended import JWTManager
 from flask_restful import Api
 
 from controller.acesso.login import Login
+from controller.acesso.logout import Logout
 from controller.acesso.novo_usuario import NovoUsuario
+# from controller.usuario.altera_usuario import AlteraUsuario
 from utils.blacklist import BLACKLIST
 
 app = Flask(__name__)
@@ -41,11 +43,11 @@ def token_invalido():
 api = Api(app)
 # --------------------------Login/Logout-----------------------#
 api.add_resource(Login, '/api/acesso/login')
-# api.add_resource(Logout, '/api/acesso/logout')
+api.add_resource(Logout, '/api/acesso/logout')
 # --------------------------New Register------------------------#
 api.add_resource(NovoUsuario, '/api/acesso/novoUsuario')
 # --------------------------User Actions------------------------#
-# api.add_resource(AlteraUsuario, '/api/usuario/altera_usuario/<user_pulic_id>')
+# api.add_resource(AlteraUsuario, '/api/usuario/altera_usuario/')
 # api.add_resource(ListaUsuarios, '/api/usuario/listaUsuarios')
 # api.add_resource(ListaUsuario, '/api/usuario/listaUsuario/<public_id>')
 # api.add_resource(AlteraStatus, '/api/usuario/alteraStatus/<public_id>')

@@ -2,43 +2,56 @@
 from builtins import dict, str
 import pprint
 
-class Pessoa:
 
-    def __init__(self, nome, idade):
+class Curso:
+
+    def __init__(self, nome, turno):
         self.nome = nome
-        self.idade = idade
+        self.turno = turno
 
     def get_json(self):
-        return dict(nome=self.nome,
-                    idade=self.idade)
+        return dict(
+            nome=self.nome,
+            turno=self.turno
+        )
+
 
 class Usuario:
 
-    def __init__(self, username, email):
+    def __init__(self, username, email, nome):
         self.username = username
         self.email = email
+        self.nome = nome
 
     def get_json(self):
         return dict(username=self.username,
-                    email=self.email)
+                    email=self.email,
+                    nome=self.nome)
+
+    def valida_usuario(dict_obj):
+        if 'username' in dict_obj:
+            pass
+        if 'email' in dict_obj:
+            pass
+        if 'nome' in dict_obj:
+            pass
 
 
 class Main:
+    user = Usuario('baelfire', 'pikdasgalaxiass@gmail.com', 'Bruno')
+    curso = Curso('ADS', 'Sei la')
 
-        p = Pessoa('Bruno', 26)
-        user = Usuario('baelfire', 'pikdasgalaxiass@gmail.com')
+    data = dict(usuario=user.get_json(),
+                curso=curso.get_json(),
+                teste=dict(var=15, var2=222))
 
-        data = dict(pessoa=p.get_json(),
-                    usuario=user.get_json())
+    print('\n')
 
-        pprint.pprint(data, sort_dicts=False, indent=4)
+    for obj in data.values():
+        print(obj)
+        if 'username' in obj:
+            Usuario.valida_usuario(obj)
 
-        for obj in data:
-            if 'pessoa' not in str(obj):
-                print ('Obj pessoa não encontrado')
-            elif 'usuario' not in str(obj):
-                print('Obj usuario nao encontrado')
-            else:
-                print (f'{str(obj)} não é requisito da função')
+
 if __name__ == '__main__':
     Main()
