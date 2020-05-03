@@ -12,6 +12,8 @@ class Login(Resource):
     def post(self):
         auth = request.authorization
 
+        print(f'Authorization: {auth}')
+
         if not auth or not auth.username or not auth.password:
             return make_response(jsonify(dict(
                 mensagem="Parâmetros de login inválidos. Revise as informações."
