@@ -12,6 +12,7 @@ class Usuario(db.Model):
     username = db.Column(db.String(80), nullable=False)
     password = db.Column(db.String(80), nullable=False)
     active = db.Column(db.Boolean, nullable=False)
+    confirmation_datetime = db.Column(db.String(30), nullable=False)
 
     # relação de um para um
     curso_public_id = db.Column(db.String(80), db.ForeignKey('curso.curso_public_id'), nullable=False)

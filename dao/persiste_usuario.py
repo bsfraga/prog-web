@@ -1,10 +1,9 @@
 import uuid
 from model.usuario import Usuario
 from dao.sql_alchemy import db
+import datetime
 
-
-
-def insere_usuario(payload, pswd_cript, curso_public_id):
+def insere_usuario(payload, pswd_cript, curso_public_id, confirmation_email_token):
     try:
         payload = dict(payload)
         if 'usuario' in payload:
@@ -17,10 +16,13 @@ def insere_usuario(payload, pswd_cript, curso_public_id):
                 username=payload['usuario']['username'],
                 password=pswd_cript,
                 active=True,
-                curso_public_id=curso_public_id
+                curso_public_id=curso_public_id,
+                confirmation_email_token=confirmation_email_token,
+                confirmation_datetime=datetime.datetime.now()
             )
             db.session.add(novo_usuario)
             db.session.commit()
             db.session.flush()
+            return novo_usuario
     except Exception as e:
         print(f'Erro ao inserir curso. \n{e}')

@@ -15,6 +15,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
@@ -58,6 +59,10 @@ api.add_resource(ListaUsuario, '/api/perfil/<usuario_public_id>')
 # api.add_resource(AlteraStatus, '/api/usuario/alteraStatus/<public_id>')
 # -------------------------------------------------------------#
 # api.add_resouce(ListaPosts, '/api/posts/)
+
+# ------------------------ EMAIL SETUP -----------------------#
+
+
 
 if __name__ == '__main__':
     from dao.sql_alchemy import db
