@@ -3,6 +3,7 @@ from model.usuario import Usuario
 from dao.sql_alchemy import db
 
 
+
 def insere_usuario(payload, pswd_cript, curso_public_id):
     try:
         payload = dict(payload)

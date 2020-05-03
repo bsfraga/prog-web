@@ -12,7 +12,7 @@ class ListaUsuario(Resource):
 
         try:
 
-            user = Usuario.query.filter_by(public_id=usuario_public_id).first()
+            user = Usuario.query.filter_by(usuario_public_id=usuario_public_id).first()
 
             curso = Curso.query.filter_by(curso_public_id=user.curso_public_id).first()
 

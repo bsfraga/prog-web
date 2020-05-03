@@ -31,8 +31,16 @@ class Login(Resource):
 
             return make_response(jsonify(dict(
                 mensagem="Usuário logado com sucesso.",
-                token=token.decode('UTF-8')
+                token=token.decode('UTF-8'),
+                usuario_public_id=usuario.usuario_public_id
             )), 200)
+
+        if not check_password_hash(usuario.password, auth.password):
+            return make_response(jsonify(
+                {
+                    'message':'Usuário ou senha inválidos.'
+                }
+            ), 422)
 
         return make_response(jsonify(dict(
             mensagem="Ocorreu um erro interno."

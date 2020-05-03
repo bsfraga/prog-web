@@ -37,7 +37,6 @@ class NovoUsuario(Resource):
                              ))
             )), 201)
 
-        # TODO: validar status code correto para essa situação
         return make_response(jsonify(dict(
             mensagem=f'{data}'
-        )), 401)
+        )), 422)
