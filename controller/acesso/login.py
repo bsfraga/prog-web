@@ -17,7 +17,7 @@ class Login(Resource):
                 mensagem="Parâmetros de login inválidos. Revise as informações."
             )), 401)
 
-        usuario = Usuario.query.filter_by(username=auth.username).first()
+        usuario = Usuario.query.filter_by(email=auth.username).first()
 
         if not usuario:
             return make_response(jsonify(dict(
