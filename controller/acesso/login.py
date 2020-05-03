@@ -25,7 +25,7 @@ class Login(Resource):
             )), 400)
 
         if check_password_hash(usuario.password, auth.password):
-            token = jwt.encode(dict(usuario_public_id=usuario.usuario_public_id,
+            token = jwt.encode(dict(identity=usuario.usuario_public_id,
                                     tempo=str(datetime.datetime.utcnow() + datetime.timedelta(60))),
                                key='DontTellAnyone')
 

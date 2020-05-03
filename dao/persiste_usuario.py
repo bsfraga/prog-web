@@ -12,7 +12,7 @@ def insere_usuario(payload, pswd_cript, curso_public_id):
                 usuario_public_id=str(uuid.uuid4()),
                 email=payload['usuario']['email'],
                 nome=payload['usuario']['nome'],
-                data_nascimento=payload['usuario']['data_nascimento'],
+                nascimento=payload['usuario']['nascimento'],
                 username=payload['usuario']['username'],
                 password=pswd_cript,
                 active=True,

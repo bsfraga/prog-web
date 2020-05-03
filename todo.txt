@@ -1,0 +1,44 @@
+Tela inicial - Sem Sessão
+    Funcionalidades
+        Login
+            Email
+            Senha
+            Link Esqueci Minha Senha
+        
+        Cadastre-Se
+            Nome
+            username
+            Email
+            password
+            data_nascimento
+            curso : { nome , turno }
+            
+Tela inicial - Com sessão
+    Funcionalidades
+        Menu lateral esquerdo
+            Imagem da conta
+            Botão com link para editar perfil
+
+        Conteudo
+            Lista postagens
+
+Tela Editar Perfil
+    Imagem de perfil
+    Funcionalidade
+        Botão para alterar imagem 
+
+        Formulario Editar senha
+            senha antiga
+            nova senha
+            confirma nova senha
+
+Tela Criar post
+    Funcionalidades
+        Formulario post
+            titulo (max length 32)
+            Conteudo (max length 150)
+            botão postar
+            botão limpar
+
+
+        

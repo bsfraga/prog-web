@@ -30,7 +30,7 @@ class NovoUsuario(Resource):
                 usuario=dict(username=payload['usuario']['username'],
                              email=payload['usuario']['email'],
                              nome=payload['usuario']['nome'],
-                             data_nascimento=payload['usuario']['data_nascimento'],
+                             nascimento=payload['usuario']['nascimento'],
                              curso=dict(
                                  nome=payload['usuario']['curso']['nome'],
                                  turno=payload['usuario']['curso']['turno']

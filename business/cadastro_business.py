@@ -14,7 +14,7 @@ class CadastroBusiness:
         elif 'usuario' in data:
             for item in data['usuario']:
                 if type(item) == dict:
-                    if 'username' not in item and 'email' not in item and 'password' not in item and 'nome' not in item and 'data_nascimento' not in item:
+                    if 'username' not in item and 'email' not in item and 'password' not in item and 'nome' not in item and 'nascimento' not in item:
                         return 'Dados informados não conferem com os dados de Usuário. Visite a documentação.'
         else:
             return data

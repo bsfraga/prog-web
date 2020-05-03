@@ -8,7 +8,7 @@ class Usuario(db.Model):
     usuario_public_id = db.Column(db.String(80), nullable=False, unique=True)
     email = db.Column(db.String(80), nullable=False)
     nome = db.Column(db.String(80), nullable=False)
-    data_nascimento = db.Column(db.String(10), nullable=False)
+    nascimento = db.Column(db.String(10), nullable=False)
     username = db.Column(db.String(80), nullable=False)
     password = db.Column(db.String(80), nullable=False)
     active = db.Column(db.Boolean, nullable=False)
@@ -22,6 +22,6 @@ class Usuario(db.Model):
                     usuario_pulic_id=cls.usuario_public_id,
                     email=cls.email,
                     nome=cls.nome,
-                    data_nascimento=cls.data_nascimento,
+                    nascimento=cls.nascimento,
                     username=cls.username,
                     active=cls.active)
