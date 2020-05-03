@@ -10,23 +10,32 @@ from model.usuario import Usuario
 
 class Login(Resource):
     def post(self):
-        auth = request.authorization
 
-        print(f'Authorization: {auth}')
+        rq_body = request.get_json()
 
-        if not auth or not auth.username or not auth.password:
+        # auth = request.authorization
+
+        print(f'Authorization:{rq_body}')
+
+
+        if not rq_body or not rq_body['username'] or not rq_body['password']:
             return make_response(jsonify(dict(
                 mensagem="Parâmetros de login inválidos. Revise as informações."
             )), 401)
 
-        usuario = Usuario.query.filter_by(email=auth.username).first()
+        # if not auth or not auth.username or not auth.password:
+        #     return make_response(jsonify(dict(
+        #         mensagem="Parâmetros de login inválidos. Revise as informações."
+        #     )), 401)
+
+        usuario = Usuario.query.filter_by(username=rq_body['username']).first()
 
         if not usuario:
             return make_response(jsonify(dict(
                 mensagem="Usuário não está contido na base de dados."
             )), 400)
 
-        if check_password_hash(usuario.password, auth.password):
+        if check_password_hash(usuario.password, rq_body['password']):
             token = jwt.encode(dict(identity=usuario.usuario_public_id,
                                     tempo=str(datetime.datetime.utcnow() + datetime.timedelta(60))),
                                key='DontTellAnyone')
@@ -37,7 +46,7 @@ class Login(Resource):
                 usuario_public_id=usuario.usuario_public_id
             )), 200)
 
-        if not check_password_hash(usuario.password, auth.password):
+        if not check_password_hash(usuario.password, rq_body['password']):
             return make_response(jsonify(
                 {
                     'message':'Usuário ou senha inválidos.'
