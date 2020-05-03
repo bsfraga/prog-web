@@ -10,9 +10,11 @@ from controller.acesso.novo_usuario import NovoUsuario
 from controller.usuario.altera_senha_usuario import AlteraSenhaUsuario
 from controller.usuario.lista_usuario import ListaUsuario
 from utils.blacklist import BLACKLIST
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
