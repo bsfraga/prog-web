@@ -16,4 +16,3 @@ def send_email_confirmation(cls, email_target, target_public_id):
 
         smtp.sendmail(email_target, EMAIL_ADDRESS, msg )
 
-        return True

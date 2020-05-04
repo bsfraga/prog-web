@@ -4,8 +4,8 @@ from dao.sql_alchemy import db
 class Usuario(db.Model):
     __tablename__ = 'usuario'
 
-    id = db.Column(db.String(80), primary_key=True, nullable=False, unique=True)
-    usuario_public_id = db.Column(db.String(80), nullable=False, unique=True)
+    id = db.Column(db.Integer, primary_key=True)
+    usuario_public_id = db.Column(db.String(120), nullable=False, unique=True)
     email = db.Column(db.String(80), nullable=False)
     nome = db.Column(db.String(80), nullable=False)
     nascimento = db.Column(db.String(10), nullable=False)
