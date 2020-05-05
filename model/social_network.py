@@ -1,13 +1,13 @@
 from dao.sql_alchemy import db
-from model.usuario import Usuario
+from model.user import User
 
 
-class RedesSociais(db.Model):
+class SocialNetwork(db.Model):
 
-    __tablename__ = 'redes_sociais'
+    __tablename__ = 'social'
 
     id = db.Column(db.Integer(primary_key=True, nullable=False, unique=True))
-    pessoa_public_id = db.relationship(Usuario, lazy=True, backref='redes_sociais', uselist=False)
+    pessoa_public_id = db.relationship(User, lazy=True, backref='social', uselist=False)
     facebook = db.Column(db.String(120), nullable=True)
     instagram = db.Column(db.String(120), nullable=True)
     twitter = db.Column(db.String(120), nullable=True)

@@ -11,6 +11,6 @@ class Logout(Resource):
         jwt_id = get_raw_jwt()['jti']
         BLACKLIST.add(jwt_id)
         return make_response(jsonify(
-            {
-                'message':'Usuário desconectado com sucesso.'
-            }), 200)
+            dict(
+                message='Usuário desconectado com sucesso.'
+            )), 200)

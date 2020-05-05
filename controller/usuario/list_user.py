@@ -2,31 +2,31 @@ from flask import jsonify, make_response, request
 from flask_jwt_extended import get_jwt_identity, get_raw_jwt, jwt_required
 from flask_restful import Resource
 
-from model.curso import Curso
-from model.usuario import Usuario
+from model.course import Course
+from model.user import User
 
 
-class ListaUsuario(Resource):
+class ListUser(Resource):
     @jwt_required
-    def get(self, usuario_public_id):
+    def get(self, user_public_id):
 
         try:
 
-            user = Usuario.query.filter_by(usuario_public_id=usuario_public_id).first()
+            user = User.query.filter_by(user_public_id=user_public_id).first()
 
-            curso = Curso.query.filter_by(curso_public_id=user.curso_public_id).first()
+            course = Course.query.filter_by(course_public_id=user.course_public_id).first()
 
             return make_response(jsonify(
                 {
-                    'usuario_public_id':user.usuario_public_id,
+                    'user_public_id':user.user_public_id,
                     'email':user.email,
-                    'nome':user.nome,
+                    'name':user.name,
                     'nascimento':user.nascimento,
                     'username':user.username,
-                    'curso':dict(
-                        curso_public_id=curso.curso_public_id,
-                        curso_nome=curso.nome,
-                        curso_turno=curso.turno
+                    'course':dict(
+                        course_public_id=course.course_public_id,
+                        course_name=course.name,
+                        course_turno=course.turno
                     )
                 }
             ), 200)

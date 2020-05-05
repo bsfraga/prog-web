@@ -1,11 +1,11 @@
 import datetime
 
-import jwt
-from flask import request, jsonify, make_response
+from flask import jsonify, make_response, request
+from flask_jwt_extended import create_access_token
 from flask_restful import Resource
 from werkzeug.security import check_password_hash
 
-from model.usuario import Usuario
+from model.user import User
 
 
 class Login(Resource):
@@ -13,46 +13,33 @@ class Login(Resource):
 
         rq_body = request.get_json()
 
-        # auth = request.authorization
-
-        print(f'Authorization:{rq_body}')
-
-
         if not rq_body or not rq_body['username'] or not rq_body['password']:
             return make_response(jsonify(dict(
-                mensagem="Parâmetros de login inválidos. Revise as informações."
+                message="Parâmetros de login inválidos. Revise as informações."
             )), 401)
 
-        # if not auth or not auth.username or not auth.password:
-        #     return make_response(jsonify(dict(
-        #         mensagem="Parâmetros de login inválidos. Revise as informações."
-        #     )), 401)
+        user = User.query.filter_by(username=rq_body['username']).first()
 
-        usuario = Usuario.query.filter_by(username=rq_body['username']).first()
-
-        if not usuario:
+        if not user:
             return make_response(jsonify(dict(
-                mensagem="Usuário não está contido na base de dados."
+                message="Usuário não está contido na base de dados."
             )), 400)
 
-        if check_password_hash(usuario.password, rq_body['password']):
-            token = jwt.encode(dict(identity=usuario.usuario_public_id,
-                                    tempo=str(datetime.datetime.utcnow() + datetime.timedelta(60))),
-                               key='DontTellAnyone')
-
+        if check_password_hash(user.password, rq_body['password']):
+            token = create_access_token(
+                identity=user.user_public_id, expires_delta=datetime.timedelta(900))
             return make_response(jsonify(dict(
-                mensagem="Usuário logado com sucesso.",
-                token=token.decode('UTF-8'),
-                usuario_public_id=usuario.usuario_public_id
+                message="Usuário logado com sucesso.",
+                token=token.__str__()
             )), 200)
 
-        if not check_password_hash(usuario.password, rq_body['password']):
+        if not check_password_hash(user.password, rq_body['password']):
             return make_response(jsonify(
-                {
-                    'message':'Usuário ou senha inválidos.'
-                }
-            ), 422)
+                dict(
+                    message='Usuário ou senha inválidos.'
+                
+            )), 422)
 
         return make_response(jsonify(dict(
-            mensagem="Ocorreu um erro interno."
+            message="Ocorreu um erro interno."
         )), 500)
