@@ -34,7 +34,7 @@ def get_user_by_username(username):
     except Exception:
         logging.exception('Erro ao obter usuário pelo username.')
 
-def insert_user(payload, pswd_cript, course_public_id):
+def insert_user(payload, pswd_cript):
     try:
         payload = dict(payload)
         if 'user' in payload:
@@ -46,7 +46,6 @@ def insert_user(payload, pswd_cript, course_public_id):
                 username=payload['user']['username'],
                 password=pswd_cript,
                 active=False,
-                course_public_id=course_public_id,
                 registration_datetime=datetime.datetime.now(),
                 confirm_register_datetime=""
             )

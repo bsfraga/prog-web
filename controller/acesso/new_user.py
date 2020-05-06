@@ -48,9 +48,9 @@ class NewUser(Resource):
                                     message='Dados informados não conferem com os dados de Usuário. Visite a documentação.'
                                 )), 422)
 
-            course_user_id = insert_course(payload)
 
-            user_id = insert_user(payload, pswd_cript, course_user_id)
+            user_id = insert_user(payload, pswd_cript)
+            course_user_id = insert_course(payload, user_id)
 
             if not course_user_id or not user_id:
                 return make_response(jsonify(

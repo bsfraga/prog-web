@@ -15,5 +15,5 @@ class Post(db.Model):
     deleted_post = db.Column(db.Boolean, nullable=False)
     post_datetime = datetime.datetime.now()
     
-    user_public_id = db.Column(db.String(80), db.ForeignKey('user.user_public_id'), nullable=False)
-    commentary_public_id = db.relationship(Commentary, backref='post', lazy=True)
+    user_public_id = db.Column(db.String(80), db.ForeignKey('user.user_public_id'))
+    

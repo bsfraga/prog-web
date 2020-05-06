@@ -14,21 +14,21 @@ class ListUser(Resource):
 
             user = User.query.filter_by(user_public_id=user_public_id).first()
 
-            course = Course.query.filter_by(course_public_id=user.course_public_id).first()
+            course = Course.query.filter_by(user_public_id=user_public_id).first()
 
             return make_response(jsonify(
-                {
-                    'user_public_id':user.user_public_id,
-                    'email':user.email,
-                    'name':user.name,
-                    'nascimento':user.nascimento,
-                    'username':user.username,
-                    'course':dict(
+                dict(
+                    user_public_id=user.user_public_id,
+                    email=user.email,
+                    name=user.name,
+                    birthday=user.birthday,
+                    username=user.username,
+                    course=dict(
                         course_public_id=course.course_public_id,
                         course_name=course.name,
-                        course_turno=course.turno
+                        course_shift=course.shift
                     )
-                }
+                )
             ), 200)
 
         except Exception as e:

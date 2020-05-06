@@ -1,5 +1,5 @@
 from flask import jsonify, make_response, request
-from flask_jwt_extended import (get_jwt_identity, jwt_refresh_token_required,
+from flask_jwt_extended import (get_jwt_identity, jwt_required,
                                 jwt_required)
 from flask_restful import Resource
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -10,7 +10,7 @@ from model.user import User
 
 class ChangeUserPassword(Resource):
 
-    @jwt_refresh_token_required
+    @jwt_required
     def put(self):
         try:
 

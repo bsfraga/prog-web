@@ -4,14 +4,15 @@ from dao.sql_alchemy import db
 from model.course import Course
 import logging
 
-def insert_course(payload):
+def insert_course(payload, user_public_id):
     try:
         payload = dict(payload)
         if 'course' in payload['user']:
             new_course = Course(
                 course_public_id=uuid.uuid4().__str__(),
                 name=payload['user']['course']['name'],
-                shift=payload['user']['course']['shift']
+                shift=payload['user']['course']['shift'],
+                user_public_id=user_public_id
             )
             db.session.add(new_course)
             db.session.commit()

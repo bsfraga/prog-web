@@ -12,5 +12,4 @@ class Course(db.Model):
     name = db.Column(db.String(30), nullable=False)
     shift = db.Column(db.String(15), nullable=False)
 
-    user_public_id = db.relationship(
-        User, backref='course', lazy=True, uselist=False)
+    user_public_id = db.Column(db.String(80), db.ForeignKey('user.user_public_id'))

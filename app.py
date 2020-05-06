@@ -1,13 +1,17 @@
 import os
+
 from flask import Flask, jsonify, make_response, request
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_restful import Api
 
+from controller.acesso.confirm_register import ConfirmRegister
 from controller.acesso.login import Login
 from controller.acesso.logout import Logout
-from controller.acesso.confirm_register import ConfirmRegister
 from controller.acesso.new_user import NewUser
+from controller.post.create_post import CreatePost
+from controller.post.edit_post import EditPost
+from controller.post.remove_post import RemovePost
 # from controller.usuario.altera_senha_usuario import AlteraSenhaUsuario
 from controller.usuario.list_user import ListUser
 from utils.blacklist import BLACKLIST
@@ -61,6 +65,9 @@ api.add_resource(ListUser, '/api/profile/<user_public_id>')
 # api.add_resource(AlteraStatus, '/api/usuario/alteraStatus/<public_id>')
 # -------------------------------------------------------------#
 # api.add_resouce(ListaPosts, '/api/posts/)
+api.add_resource(CreatePost, '/api/post/newPost')
+api.add_resource(EditPost, '/api/post/editPost/<post_public_id>')
+api.add_resource(RemovePost, '/api/post/removePost/<post_public_id>')
 
 # ------------------------ EMAIL SETUP -----------------------#
 
