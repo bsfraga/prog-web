@@ -16,6 +16,7 @@ from controller.post.remove_post import RemovePost
 from controller.usuario.list_user import ListUser
 from utils.blacklist import BLACKLIST
 
+
 app = Flask(__name__)
 CORS(app)
 jwt = JWTManager(app)
